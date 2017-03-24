@@ -12,7 +12,6 @@
       console.log(user);
       UserService.signup(user)
                   .then(function(response){
-                    console.log(response);
                     $scope.newUser = {};
                   })
                   .catch(function(err){
