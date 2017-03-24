@@ -1,18 +1,21 @@
 var mongoose = require('mongoose');
 
 var postSchema = mongoose.Schema({
-  email: {
+  title:{
     type: String,
-    unique: true,
+    required: true,
+  },
+  body: {
+    type: String,
     required: true
   },
-  name: {
-    type: String,
-    required: true
+  created: {
+    type: Date,
+    default: Date.now
   },
-  password: {
-    type: String,
-    required: true
+  updated: {
+    type: Date,
+    default: Date.now
   }
 });
 

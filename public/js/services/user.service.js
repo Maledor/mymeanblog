@@ -5,50 +5,62 @@
   UserService.$inject = ['$http'];
 
   function UserService($http){
-    var userURL = '/users';
-    var users = [];
+    var base = '/users';
 
     function login(){
+      return $http.post('/login')
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
 
     function getOne(){
-      return $http.get(`${userURL}/${user._id}`)
+      var url = `${base}/${user._id}`;
+      return $http.get(url)
                   .then(function(response){
-                    users = reponse.data.users._id;
+                    console.log(response);
                   });
     }
 
     function getAll(){
-      return $http.get(userURL)
+      return $http.get(base)
                   .then(function(response){
-                    users = response.data.users;
+                    console.log(response);
                   });
     }
 
     function signup(user){
-      return $http.user(userURL, user)
-                  .then(getAll);
+      return $http.post('/signup', user)
+                  .then(function(response){
+                    return response;
+                  });
     }
 
 
     function deleteUser(user){
-      return $http.delete(`${userURL}/${user._id}`)
-                  .then(getAll);
+      var url = `${base}/${user._id}`;
+      return $http.delete(url)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
 
 
     function update(user){
-      return $http.put(`${userURL}/${user._id}`, user)
-                  .then(getAll);
+      var url = `${base}/${user._id}`;
+      return $http.put(url, user)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
 
     return{
       getAll: getAll,
-      delete: deleteTodo,
+      delete: deleteUser,
       update: update,
       login: login,
-      signup: signup
+      signup: signup,
+      getOne: getOne
     };
-
   }
 })();

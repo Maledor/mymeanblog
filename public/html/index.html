@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='mymeanblog'>
   <head>
     <meta charset="utf-8">
     <title>mymeanblog</title>
@@ -7,8 +7,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.js"></script>
   </head>
   <body>
+    <div ng-controller='SignupController'>
+      <form ng-submit='signup(newUser)'>
+        <div>
+          <label>Name:</label>
+          <input type="text" ng-model='newUser.name' ng-required='true'>
+        </div>
+        <div>
+          <label>Email:</label>
+          <input type="text" ng-model='newUser.email' ng-required='true'>
+        </div>
+        <div>
+          <label>Password:</label>
+          <input type="password" ng-model='newUser.password' ng-required='true'>
+        </div>
+        <button type="submit">Sign Up!</button>
+      </form>
+
+    </div>
     <script src="js/app.js"></script>
     <script src="js/services/user.service.js"></script>
     <script src="js/services/post.service.js"></script>
+    <script src="js/controllers/signup.controller.js"></script>
   </body>
 </html>
