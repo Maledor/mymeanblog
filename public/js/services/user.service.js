@@ -51,6 +51,6 @@
       signup: signup,
       update: update,
       delete: deleteUser
-    }
+    };
   }
 }());
