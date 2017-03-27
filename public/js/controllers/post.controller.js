@@ -16,7 +16,7 @@
     };
 
     function edit(post){
-      console.log('editing the post');
+      PostService.edit(post);
     }
 
     function create(post){
