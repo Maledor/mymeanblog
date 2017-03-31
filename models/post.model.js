@@ -17,7 +17,7 @@ var postSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  author: {
+  author:{
     required: true,
     type: mongoose.Schema.Types.ObjectId
   }

@@ -1,5 +1,4 @@
 (function() {
-
     angular.module('mymeanblog')
           .config(RouterConfig);
 

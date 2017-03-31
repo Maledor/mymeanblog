@@ -1,6 +1,6 @@
 (function() {
   angular.module('mymeanblog')
-          .controller('SignupController', SignupController);
+         .controller('SignupController', SignupController);
 
   SignupController.$inject = ['$scope', 'UserService'];
 

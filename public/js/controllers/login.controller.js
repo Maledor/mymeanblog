@@ -1,22 +1,22 @@
 (function() {
   angular.module('mymeanblog')
-          .controller('LoginController', LoginController);
+         .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$scope', 'UserService'];
+  LoginController.$inject = ['$scope', 'UserService', '$location'];
 
-  function LoginController($scope, UserService){
-    $scope.user = {};
-    $scope.login = login;
+  function LoginController($scope, UserService, $location){
+      $scope.user = {};
+      $scope.login = login;
 
-    function login(user){
-      UserService.login(user)
-                  .then(function(response){
-                    console.log(response);
-                  })
-                  .catch(function(err){
-                    console.log(err);
-                    $scope.user.password = '';
-                  });
-    }
+      function login(user){
+        UserService.login(user)
+                    .then(function(){
+                      $location.path('/dashboard');
+                    })
+                    .catch(function(err){
+                      console.log(err);
+                      $scope.user.password = '';
+                    });
+      }
   }
 }());
