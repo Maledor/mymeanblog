@@ -2,9 +2,13 @@
   angular.module('mymeanblog')
          .controller('PostController', PostController);
 
-  PostController.$inject = ['$scope', 'PostService', '$routeParams'];
+  PostController.$inject = ['$scope',
+                            'PostService',
+                            '$routeParams',
+                            'UserService',
+                            '$location'];
 
-  function PostController($scope, PostService, $routeParams){
+  function PostController($scope, PostService, $routeParams, UserService, $location){
     $scope.create = create;
     $scope.edit = edit;
     $scope.mockPost = {
@@ -15,22 +19,34 @@
       created: new Date(),
       updated: new Date()
     };
-    var id = $routeParams.postId;
-    PostService.getOne(id)
-                .then(function(){
-                  console.log('success');
-                })
-                .catch(function(){
-                  console.log('error');
-                });
 
+    if($location.path().startsWith('/edit/')){
+      editInit();
+    }
+    function editInit(){
+      var id = $routeParams.postId;
+      PostService.getOne(id)
+                  .then(function(){
+                    console.log('success');
+                  })
+                  .catch(function(){
+                    console.log('error');
+                  });
+    }
     function edit(post){
       PostService.edit(post);
 
     }
 
     function create(post){
-      PostService.create(post);
+      var userId = UserService.currentUser()._id;
+      console.log(userId);
+      post.author = userId;
+      PostService.create(post)
+                  .then(function(){
+                    $location.path('/dashboard');
+                  })
+                  .catch(function(err){});
     }
   }
 }());
