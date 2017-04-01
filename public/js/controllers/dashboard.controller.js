@@ -31,7 +31,4 @@
         console.log('deleting the post with _id of' + post._id);
       }
     }
-        console.log('deleting the post with _id of ' + post._id);
-      }
-  }
 }());
